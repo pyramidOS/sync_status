@@ -25,5 +25,5 @@ task:
   sync-source:
       - mkdir -p /home/android
       - cd /home/android
-      - repo init --depth=1 --no-repo-verify -u https://github.com/pyramidOS -b 11 -g default,-mips,-darwin,-notdefault
+      - repo init --depth=1 --no-repo-verify -u https://github.com/pyramidOS -b 12.1 -g default,-mips,-darwin,-notdefault
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
