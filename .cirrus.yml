@@ -1,0 +1,29 @@
+env:
+    GH_TOKEN:
+
+task:
+  name: Check sync status of pyramidOS
+  timeout_in: 120m
+  container:
+      image: anyakichi/aosp-builder:bionic
+      cpu: 8
+      memory: 32G
+      volumes:
+        - /home/android:/home/android
+
+
+  repo-tool:
+      - git config --global user.name "rk134"
+      - git config --global user.email "rahul-k@bigdi.cc"
+      - git config --global credential.helper store
+      - echo "https://rk134:$(GH_TOKEN)@github.com" > ~/.git-credentials
+      - mkdir -p ~/.bin
+      - PATH="${HOME}/.bin:${PATH}"
+      - curl https://storage.googleapis.com/git-repo-downloads/repo > ~/.bin/repo
+      - chmod a+rx ~/.bin/repo
+
+  sync-source:
+      - mkdir -p /home/android
+      - cd /home/android
+      - repo init --depth=1 --no-repo-verify -u https://github.com/pyramidOS -b 11 -g default,-mips,-darwin,-notdefault
+      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
