@@ -1,5 +1,5 @@
 env:
-    GH_TOKEN:
+    GH_TOKEN: "ENCRYPTED[68409594f40bb008795b789be508ee5be1047d1ac07c96e729c103e203e971af22997cc1419671fb149d8835bcf69164]"
 
 task:
   name: Check sync status of pyramidOS
